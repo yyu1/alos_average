@@ -7,7 +7,7 @@ out_file = '/dataraid/roc/outfile'
 xdim = 4000
 ydim = 4000
 
-outline = np.empty(xdim/4, dtype=np.uint16)
+outline = np.empty(xdim/4, dtype=np.int16)
 
 with infile = open(in_file, "rb"):
 	with outfile = open(out_file, "wb"):
@@ -18,6 +18,6 @@ with infile = open(in_file, "rb"):
 			inline_lp = np.power(10,0.1*inline_db)
 
 			for i in range(0,(xdim/4)-1):
-				outline[i] = np.mean(inline_lp[:,i*4:i*4+3])
+				outline[i] = np.int16(np.mean(inline_lp[:,i*4:i*4+3]))
 
 			outline.tofile(outfile)
